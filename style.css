@@ -15,8 +15,8 @@ body {
     line-height: 1.75em;
 }
 
-#header {
-    background-image: url("./bg.jpg");
+header {
+    background-image: url("./ressources/bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -32,19 +32,109 @@ body {
     display: inline-block;
     position: relative;
 }
+
 #avatar img {
     border-radius: 100%;
     width: 100%;
     display: block;
 }
 
-.title {
+#title {
     font-size: 1.35em;
 }
+
 #main-title {
     color: #ffffff;
 }
 
-.blue {
-    /* background-color: blue; */
+#main {
+    padding: 2em;
+    text-align: center;
+}
+
+.button {
+    border: 3px solid #efefef;
+    text-align: center;
+    border-radius: 5px;
+    padding: 0.5em 1.5em;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 400;
+    margin: 0.75em auto;
+    color: #787878;
+    transition: 500ms;
+    box-sizing: border-box;
+}
+
+.active {
+    animation: blinker 1s linear infinite;
+}
+
+.button:hover {
+    border-color: #333e12;
+    color: #333e12;
+    transition: 500ms;
+}
+
+@keyframes blinker {
+    50% {
+        background-color: #808080;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .button {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 481px) {
+    .button {
+        width: auto;
+        margin-left: 25px;
+        margin-right: 25px;
+        min-width: 25%;
+    }
+}
+
+@media screen and (min-width: 737px) and (max-width: 980px) {
+    header {
+        height: 250px;
+    }
+}
+
+@media screen and (min-width: 981px) {
+    .button {
+        min-width: 200px;
+    }
+
+    header {
+        position: fixed;
+        margin: 0;
+        padding: 100px 4% 0 0;
+        height: 100%;
+        width: 28%;
+    }
+
+    #avatar {
+        position: relative;
+        display: block;
+        margin-left: auto;
+        margin-bottom: 35px;
+    }
+
+    #title {
+        text-align: right;
+    }
+
+    #main {
+        margin-left: 32%;
+        padding: 100px 5%;
+    }
+
+    .button {
+        margin: 8px;
+        min-width: 0;
+        padding: 0.5em 1.5em;
+    }
 }

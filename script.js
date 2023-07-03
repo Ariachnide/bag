@@ -1,3 +1,20 @@
+const setUpAudioType = (path) => {
+    const fileExtension = path.split(".").at(-1);
+    switch (fileExtension) {
+        case "mp3":
+            return "audio/mpeg";
+        case "ogg":
+            return "audio/ogg";
+        case "wav":
+            return "audio/wav";
+        default:
+            console.error(
+                `Unknown or missing file extension - only mp3, ogg or wav files are handled`,
+            );
+            return "";
+    }
+};
+
 window.addEventListener("load", () => {
     const main = document.getElementById("main");
     let playingElementId;
@@ -10,16 +27,22 @@ window.addEventListener("load", () => {
 
     const handleButtonClick = (id) => {
         if (playingElementId !== undefined) {
-            document.getElementById("buttonElement" + playingElementId).classList.toggle("active");
+            document
+                .getElementById("buttonElement" + playingElementId)
+                .classList.toggle("active");
             stopAudio();
         }
         playingElementId = id;
         document.getElementById(id).play();
-        document.getElementById("buttonElement" + playingElementId).classList.toggle("active");
+        document
+            .getElementById("buttonElement" + playingElementId)
+            .classList.toggle("active");
     };
 
     const handleOnEnded = () => {
-        document.getElementById("buttonElement" + playingElementId).classList.toggle("active");
+        document
+            .getElementById("buttonElement" + playingElementId)
+            .classList.toggle("active");
         playingElementId = undefined;
     };
 
@@ -42,13 +65,14 @@ window.addEventListener("load", () => {
                 audioElement.onended = handleOnEnded;
                 const audioSource = document.createElement("source");
                 audioSource.src = path + data.sfxFile;
-                audioSource.type = "audio/wav";
+
+                audioSource.type = setUpAudioType(data.sfxFile);
 
                 audioElement.appendChild(audioSource);
                 element.appendChild(audioElement);
                 element.appendChild(contentElement);
 
                 main.appendChild(element);
-            })
+            }),
         );
 });
